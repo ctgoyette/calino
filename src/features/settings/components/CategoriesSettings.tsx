@@ -85,6 +85,7 @@ export function CategoriesSettings({
   const updateAutoCategoryRule = useCalendarStore((s) => s.updateAutoCategoryRule)
   const deleteAutoCategoryRule = useCalendarStore((s) => s.deleteAutoCategoryRule)
   const useCategoryColors = useSettingsStore((s) => s.useCategoryColors)
+  const useCategoryColorsForTasks = useSettingsStore((s) => s.useCategoryColorsForTasks)
   const updateSettings = useSettingsStore((s) => s.updateSettings)
 
   // Category editor state
@@ -315,6 +316,34 @@ export function CategoriesSettings({
               checked={useCategoryColors}
               aria-label={t('categories.useCategoryColors.ariaLabel')}
               onChange={() => updateSettings({ useCategoryColors: !useCategoryColors })}
+            />
+            <span className={styles.pill} />
+            <span className={styles.knob} />
+          </label>
+        </div>
+      </div>
+
+      <div className={styles.group}>
+        <div
+          className={styles.row}
+          data-component="setting-row"
+          data-setting="use-category-colors-for-tasks"
+          data-value={String(useCategoryColors)}
+        >
+          <div>
+            <div className={styles.rowLabel}>{t('categories.useCategoryColorsForTasks.label')}</div>
+            <div className={styles.rowDesc}>{t('categories.useCategoryColorsForTasks.desc')}</div>
+          </div>
+          <label
+            className={styles.toggle}
+            data-component="toggle"
+            data-setting="use-category-colors-for-tasks"
+          >
+            <input
+              type="checkbox"
+              checked={useCategoryColorsForTasks}
+              aria-label={t('categories.useCategoryColorsForTasks.ariaLabel')}
+              onChange={() => updateSettings({ useCategoryColorsForTasks: !useCategoryColorsForTasks })}
             />
             <span className={styles.pill} />
             <span className={styles.knob} />

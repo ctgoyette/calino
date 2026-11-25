@@ -445,6 +445,11 @@
       "desc": "Quando disabilitati, gli eventi utilizzano il colore del calendario",
       "ariaLabel": "Utilizza i colori delle categorie per gli eventi"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Parole chiave",
       "removeKeyword": "Rimuovi la parola chiave {{keyword}}",

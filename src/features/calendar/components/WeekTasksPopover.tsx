@@ -13,6 +13,7 @@ import { taskDayRange } from '@/lib/weekTasks'
 import type { CalendarEvent } from '@/types'
 import { usePlacement } from '../hooks/usePlacement'
 import { useWeekTaskActions } from '../hooks/useWeekTaskActions'
+import { useTaskColor } from '../hooks/useTaskColor'
 import { TaskContextMenu } from './TaskContextMenu'
 import { WeekTaskQuickAdd } from './WeekTaskQuickAdd'
 import { DraggablePill } from './WeekTasksBar'
@@ -46,6 +47,7 @@ export function WeekTasksPopover({
 }: WeekTasksPopoverProps): JSX.Element {
   const { t } = useTranslation('calendar')
   const calendars = useCalendarStore((state) => state.calendars)
+  const getTaskColor = useTaskColor()
   const popupRef = useRef<HTMLDivElement>(null)
   const prefersReducedMotion = useReducedMotion()
   const placement = usePlacement(popupRef, position)
@@ -122,11 +124,7 @@ export function WeekTasksPopover({
                 task={task}
                 disabled={readOnly}
                 className={`${styles.row} ${task.completed ? controls.done : ''}`}
-                style={
-                  calendar?.color
-                    ? ({ '--event-color': calendar.color } as React.CSSProperties)
-                    : undefined
-                }
+                style={{ '--event-color': getTaskColor(task) } as React.CSSProperties}
                 onContextMenu={(e) => handleContextMenu(e, task)}
                 data-component="week-task-pill"
                 data-testid={`week-task-${task.id}`}

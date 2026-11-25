@@ -7,6 +7,17 @@ export interface ResolvedEventColorSources {
   calendarColor?: string
   categoryColor?: string
   useCategoryColors: boolean
+  useCategoryColorsForTasks?: boolean
+}
+
+export function shouldUseCategoryColor(
+  event: Pick<CalendarEvent, 'type'>,
+  options: { useCategoryColors: boolean; useCategoryColorsForTasks?: boolean}
+): boolean {
+  if (event.type === 'task') {
+    return options.useCategoryColorsForTasks ?? options.useCategoryColors
+  }
+  return options.useCategoryColors
 }
 
 /**
@@ -19,7 +30,7 @@ export function getEventColorFromSources(
   sources: ResolvedEventColorSources
 ): string {
   if (event.color) return event.color
-  if (sources.useCategoryColors && sources.categoryColor) return sources.categoryColor
+  if (shouldUseCategoryColor(event, sources) && sources.categoryColor) return sources.categoryColor
   return sources.calendarColor ?? DEFAULT_CALENDAR_COLOR
 }
 
@@ -38,11 +49,12 @@ export function getEventColor(
     categories: Category[]
     calendars: Calendar[]
     useCategoryColors: boolean
+    useCategoryColorsForTasks?: boolean
   }
 ): string {
   const categoryValue = event.categories?.[0]
   const firstCategory =
-    options.useCategoryColors && categoryValue
+    shouldUseCategoryColor(event, options) && categoryValue
       ? options.categories.find((cat) =>
           isUUID(categoryValue) ? cat.id === categoryValue : cat.name === categoryValue
         )
@@ -53,5 +65,6 @@ export function getEventColor(
     categoryColor: firstCategory?.color,
     calendarColor: calendar?.color,
     useCategoryColors: options.useCategoryColors,
+    useCategoryColorsForTasks: options.useCategoryColorsForTasks,
   })
 }

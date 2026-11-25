@@ -445,6 +445,11 @@
       "desc": "Als dit is uitgeschakeld, gebruiken gebeurtenissen de kleur van hun agenda",
       "ariaLabel": "Categoriekleuren voor gebeurtenissen gebruiken"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Trefwoorden",
       "removeKeyword": "Trefwoord {{keyword}} verwijderen",

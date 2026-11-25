@@ -7,6 +7,7 @@ import { formatDisplayDate, toEventInstant } from '@/lib/datetime'
 import { homeDayKey } from '@/lib/homeTimezone'
 import type { CalendarEvent } from '@/types'
 import { useWeekTaskActions } from '../hooks/useWeekTaskActions'
+import { useTaskColor } from '../hooks/useTaskColor'
 import { TaskContextMenu } from './TaskContextMenu'
 import { WeekTaskQuickAdd } from './WeekTaskQuickAdd'
 import styles from './WeekTasksBar.module.css'
@@ -71,6 +72,7 @@ function rangeLabel(task: CalendarEvent, t: TFunction<'calendar'>): string {
 export function WeekTasksBar({ tasks, weekStartKey, weekEndKey }: WeekTasksBarProps): JSX.Element {
   const { t } = useTranslation('calendar')
   const calendars = useCalendarStore((state) => state.calendars)
+  const getTaskColor = useTaskColor()
   const { toggle, quickAdd, openForm, openTask, taskMenu, handleContextMenu, closeTaskMenu } =
     useWeekTaskActions({ weekStartKey, weekEndKey })
 
@@ -98,11 +100,7 @@ export function WeekTasksBar({ tasks, weekStartKey, weekEndKey }: WeekTasksBarPr
               title={tooltip}
               data-component="week-task-pill"
               onContextMenu={(e) => handleContextMenu(e, task)}
-              style={
-                calendar?.color
-                  ? ({ '--event-color': calendar.color } as React.CSSProperties)
-                  : undefined
-              }
+              style={{ '--event-color': getTaskColor(task) } as React.CSSProperties}
               data-testid={`week-task-${task.id}`}
               data-week-start={
                 task.isAllDay

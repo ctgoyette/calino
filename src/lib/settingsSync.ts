@@ -79,6 +79,7 @@ export const SYNCABLE_SETTINGS: (keyof UserSettings)[] = [
   'showTaskCalendarLabels',
   'showSidebarTaskCalendarLabels',
   'useCategoryColors',
+  'useCategoryColorsForTasks',
   'journalEnabled',
   'taskCollapseOverrides',
 ]

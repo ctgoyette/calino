@@ -431,6 +431,7 @@ export function AgendaView({ embedded = false }: { embedded?: boolean } = {}): J
 
   const fadePastDaysInAgenda = useSettingsStore((state) => state.fadePastDaysInAgenda)
   const useCategoryColors = useSettingsStore((state) => state.useCategoryColors)
+  const useCategoryColorsForTasks = useSettingsStore((state) => state.useCategoryColorsForTasks)
 
   const sensors = useSensors(
     useSensor(MouseSensor, { activationConstraint: { distance: 8 } }),
@@ -478,7 +479,7 @@ export function AgendaView({ embedded = false }: { embedded?: boolean } = {}): J
   }, [events])
 
   const getEventBarColor = (event: CalendarEvent): string =>
-    getEventColor(event, { categories, calendars, useCategoryColors })
+    getEventColor(event, { categories, calendars, useCategoryColors, useCategoryColorsForTasks })
 
   const date = parseISO(currentDate)
   const monthKey = currentDate.slice(0, 7)

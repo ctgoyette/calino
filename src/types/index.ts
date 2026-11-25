@@ -492,6 +492,7 @@ export interface UserSettings {
   showTaskCalendarLabels: boolean
   showSidebarTaskCalendarLabels: boolean
   useCategoryColors: boolean
+  useCategoryColorsForTasks: boolean
   showEventIcons: boolean
   categoryStyleRules: CategoryStyleRule[]
   sidebarWidth: number
