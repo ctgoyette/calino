@@ -449,6 +449,11 @@
       "desc": "关闭后日程使用所属日历的颜色",
       "ariaLabel": "日程使用分类颜色"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "关键词",
       "removeKeyword": "移除关键词 {{keyword}}",

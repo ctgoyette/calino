@@ -44,6 +44,7 @@ import {
 } from '../hooks/useTaskReorder'
 import { useTaskCollapse } from '../hooks/useTaskCollapse'
 import { useTaskCalendarLabels } from '../hooks/useTaskCalendarLabels'
+import { useTaskColor } from '../hooks/useTaskColor'
 import { TaskCalendarLabel } from './TaskCalendarLabel'
 import { getTaskDescendantIds } from '@/lib/taskTree'
 import { compareTaskSortOrder } from '@/lib/taskSortOrder'
@@ -169,6 +170,7 @@ export function TodoView(): JSX.Element {
   const events = useCalendarStore((state) => state.events)
   const calendars = useCalendarStore((state) => state.calendars)
   const { calendarById, taskCalendars, labelsVisible } = useTaskCalendarLabels('tasks')
+  const getTaskColor = useTaskColor()
   const openModal = useCalendarStore((state) => state.openModal)
   const updateEvent = useCalendarStore((state) => state.updateEvent)
   const { updateEvent: updateCalDAVEvent } = useCalDAV()
@@ -308,7 +310,6 @@ export function TodoView(): JSX.Element {
   }, [])
 
   const tasks: TaskWithColor[] = useMemo(() => {
-    const calendarMap = new Map(calendars.map((c) => [c.id, c.color]))
     const visibleCalendarIds = new Set(calendars.filter((c) => c.isVisible).map((c) => c.id))
     const calendarTasks = events.filter(
       (e) => e.type === 'task' && visibleCalendarIds.has(e.calendarId)
@@ -320,7 +321,7 @@ export function TodoView(): JSX.Element {
 
     const withColor = (task: CalendarEvent): TaskWithColor => ({
       ...task,
-      calendarColor: calendarMap.get(task.calendarId) || '#888',
+      calendarColor: getTaskColor(task),
     })
 
     // An override carries no RRULE of its own (RFC 5545 §3.8.5.3), so the
@@ -385,7 +386,7 @@ export function TodoView(): JSX.Element {
         ].join('\n'),
       }
     })
-  }, [events, calendars, t])
+  }, [events, calendars, getTaskColor, t])
 
   const taskCollapse = useTaskCollapse(events)
   const collapsedDescendantIds = useMemo(() => {

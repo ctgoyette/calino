@@ -449,6 +449,11 @@
       "desc": "Wenn diese Option deaktiviert ist, verwenden Termine ihre Kalenderfarbe",
       "ariaLabel": "Kategoriefarben für Termine verwenden"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Schlüsselwörter",
       "removeKeyword": "Schlüsselwort {{keyword}} entfernen",

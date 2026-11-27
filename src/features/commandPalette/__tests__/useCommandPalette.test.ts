@@ -206,6 +206,7 @@ vi.mock('@/store/settingsStore', () => ({
       viewOrder: ['month', 'week', 'agenda', 'year', 'day', 'todo', 'journal', 'contacts'],
       viewDividerAfter: 'day',
       useCategoryColors: true,
+      useCategoryColorsForTasks: true,
       showEventIcons: true,
       categoryStyleRules: [],
       journalEnabled: false,

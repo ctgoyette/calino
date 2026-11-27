@@ -449,6 +449,11 @@
       "desc": "Når det er deaktiveret, bruger begivenheder kalenderens farve",
       "ariaLabel": "Brug kategorifarver til begivenheder"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Nøgleord",
       "removeKeyword": "Fjern nøgleordet {{keyword}}",

@@ -16,7 +16,7 @@ import { ContextMenu } from '@/components/common/ContextMenu'
 import { RecurringIcon } from '@/components/common/icons'
 import { DeleteDialog } from './DeleteDialog'
 import type { CalendarEvent } from '@/types'
-import { getEventColorFromSources } from '@/lib/eventColor'
+import { getEventColorFromSources, shouldUseCategoryColor } from '@/lib/eventColor'
 import { isUUID } from '@/lib/uuid'
 import { useGestures } from '@/hooks/useGestures'
 import { useContextMenuStore } from '@/store/contextMenuStore'
@@ -114,11 +114,16 @@ export const EventCard = React.memo(function EventCard({
   const categoryPresentation = categoryStyleProps(dotMode ? {} : categoryAppearance)
   useHomeTimezone()
   const useCategoryColors = useSettingsStore((state) => state.useCategoryColors)
+  const useCategoryColorsForTasks = useSettingsStore((state) => state.useCategoryColorsForTasks)
+  const applyCategoryColor = shouldUseCategoryColor(event, {
+    useCategoryColors,
+    useCategoryColorsForTasks,
+  })
   const calendar = useCalendarStore((state) =>
     state.calendars.find((candidate) => candidate.id === event.calendarId)
   )
   const category = useCalendarStore((state) => {
-    if (!useCategoryColors) return undefined
+    if (!applyCategoryColor) return undefined
     const categoryValue = event.categories?.[0]
     if (!categoryValue) return undefined
 
@@ -317,6 +322,7 @@ export const EventCard = React.memo(function EventCard({
     categoryColor: category?.color,
     calendarColor: calendar?.color,
     useCategoryColors,
+    useCategoryColorsForTasks,
   })
   const isTask = event.type === 'task'
   const isSubtask = isTask && Boolean(event.parentTaskId)

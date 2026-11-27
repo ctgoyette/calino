@@ -2,6 +2,7 @@ import type { JSX } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useTaskColor } from '../hooks/useTaskColor'
 import { DUR_FAST, EASE_OUT } from '@/lib/motion'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router'
@@ -34,6 +35,7 @@ export function MiniTasksSection({ isExpanded, onToggle }: MiniTasksSectionProps
   const events = useCalendarStore((state) => state.events)
   const calendars = useCalendarStore((state) => state.calendars)
   const { calendarById, labelsVisible } = useTaskCalendarLabels('sidebar')
+  const getTaskColor = useTaskColor()
   const completeTask = useCalendarStore((state) => state.completeTask)
   const completeTaskOccurrence = useCalendarStore((state) => state.completeTaskOccurrence)
   const completeTaskOccurrenceRolling = useCalendarStore((state) => state.completeTaskOccurrenceRolling)
@@ -309,7 +311,7 @@ export function MiniTasksSection({ isExpanded, onToggle }: MiniTasksSectionProps
                     className={`${styles.taskRow} ${task.id === completingTaskId ? styles.taskCompleting : ''}`}
                     style={
                       {
-                        '--event-color': calendarById.get(task.calendarId)?.color || '#888',
+                        '--event-color': getTaskColor(task),
                       } as React.CSSProperties
                     }
                     data-component="mini-task-row"

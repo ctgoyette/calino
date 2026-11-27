@@ -204,6 +204,7 @@ const DEFAULT_SETTINGS: UserSettings = {
   showTaskCalendarLabels: true,
   showSidebarTaskCalendarLabels: true,
   useCategoryColors: true,
+  useCategoryColorsForTasks: true,
   showEventIcons: true,
   categoryStyleRules: DEFAULT_CATEGORY_STYLE_RULES,
   sidebarWidth: 300,

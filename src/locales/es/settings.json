@@ -449,6 +449,11 @@
       "desc": "Si se desactiva, los eventos usan el color de tu calendario.",
       "ariaLabel": "Usa colores de categoría para eventos"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Palabras clave",
       "removeKeyword": "Eliminar la palabra clave {{keyword}}",

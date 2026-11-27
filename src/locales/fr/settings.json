@@ -449,6 +449,11 @@
       "desc": "Si cette option est désactivée, les événements utilisent la couleur de leur calendrier",
       "ariaLabel": "Utiliser les couleurs des catégories pour les événements"
     },
+    "useCategoryColorsForTasks": {
+      "label": "Use category colors for tasks",
+      "desc": "When disabled, tasks use their calendar color",
+      "ariaLabel": "Use category colors for tasks"
+    },
     "keywords": {
       "ariaLabel": "Mots-clés",
       "removeKeyword": "Retirer le mot-clé {{keyword}}",
